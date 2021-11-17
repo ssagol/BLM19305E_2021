@@ -34,7 +34,7 @@ Length = <input type=number id=boy value=1 onChange="calculate()">
 <hr />
 <p>Ref: <a href="http://www.boykilo.org/" 
    target="NewTab">Body Mass Index Table</a>
-   <img src="bki.png" alt="Body Mass Index">
+   
 </p>
 
 <script>
@@ -48,7 +48,7 @@ Length = <input type=number id=boy value=1 onChange="calculate()">
     }if(t>=30 && t<=34.9){document.getElementById("durum").innerHTML ="I.Derece obez"
     }if(t>=35 && t<=39.9){document.getElementById("durum").innerHTML ="II.Derece obez"
     }if(t>=40){document.getElementById("durum").innerHTML ="III.Derece morbid obez"}
-    return t.toFixed(f)
+    return t.toFixed()
 }
 function calculate() {
     let x = Number(kilo.value)
