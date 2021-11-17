@@ -11,11 +11,14 @@
     input { width: 50px;background-color: rgba(177, 165, 206, 0.226);}
     h2{ color: purple;}
     input{color: purple;}
+    td, th { text-align: center; }
+    
   </style>
 </head>
 
 <body>
   <center>
+    
 <h2 id=title></h2>
 Kg = <input type=number id=kilo value=0 onChange="calculate()">
 &emsp;
@@ -35,7 +38,6 @@ Length = <input type=number id=boy value=1 onChange="calculate()">
 <p>Ref: <a href="http://www.boykilo.org/" 
    target="NewTab">Body Mass Index Table</a>
    <img src="bki.png" alt="">
-   
 </p>
 
 <script>
@@ -60,8 +62,8 @@ function doTable() {
 
     const L = [135, 140, 145, 150, 155, 160, 165, 170,175,
                 180, 185, 190, 195, 200]
-    let str = "<table border ='5'>";
-    let a = L.map((λ) => ' Cm = '+λ)
+    let str = "<table border ='5' ><th colspan=15>Boy (cm)</th>";
+    let a = L.map((λ) => '   '+λ)
     str += "<tr><td></td>"+ header(a) +"</td></tr>";
 
     for (let x=110; x>=35; x-=5) { 
@@ -74,7 +76,7 @@ function doTable() {
 } 
 
 let header  = (a) => '<td>'+ a.join('</td><td>') 
-let oneLine = (a, x) => '<td> kg = '+x+' </td> '+ a.join(' ');
+let oneLine = (a, x) => '<td> '+x+' </td> '+ a.join(' ');
     
     title.innerText = document.title
     sample.innerText = bki+' \n'+doTable
