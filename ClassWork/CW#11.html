@@ -1,0 +1,127 @@
+
+<html lang="en-US">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width">
+      <title>GitHub Users</title>
+      <style>
+        body {
+            max-width: 440px;
+        }
+        img {
+            width: 250px;
+            border: 2px solid rgb(170, 67, 63);
+        }
+        #out{
+            font-size: 20px;
+            color: rgb(170, 67, 63);
+            font-weight: lighter;
+        }
+        input{
+            color: rgb(170, 67, 63);
+            border: 1px solid rgb(170, 67, 63);
+        }
+        h2{
+            color: rgb(170, 67, 63);
+        }
+       
+      </style>
+    </head>
+    
+    <body>
+    
+    <h2 id=title></h2>
+    <input type=text id=usr value=ssagol onChange="readUser()">
+    <b><p id=out></p></b>
+    
+    <script>
+    "use strict";
+    function error(e) {
+        out.innerText = e;
+        out.style.color = 'red'
+        console.error(e)
+    }
+    function cause(s) {
+        switch (s) {
+            case 403:
+            return 'Rate limit exceeded'
+            case 404:
+            return usr.value+' not found'
+            default:
+            return 'Status '+s
+        }
+    }
+    async function toJSON(url) {
+        try {
+            let r = await fetch(url)
+            if (!r.ok) throw cause(r.status)
+            return await r.json()
+        } catch (e) {
+            error(e)
+        }
+    }
+    async function readUser() {
+        const URL = "https://api.github.com/users/"
+        const BR = "<BR>" 
+        let u = await toJSON(URL+usr.value)
+        if (!u || !u.login) return
+        out.style.color = ''
+        out.innerHTML = ''
+
+        //start with a tiny image
+        let i = document.createElement("img")
+        i.src = u.avatar_url
+        out.appendChild(i)
+        let k = document.createElement("br")
+        out.appendChild(k)
+
+        //add name 
+        let s = (u.name? u.name : u.login).bold()
+        out.innerHTML += s; console.log(s)
+        out.appendChild(k)
+
+        //add user name
+        let userName=u.login
+        out.innerHTML+=userName
+        out.appendChild(k)
+        
+        //add company
+        out.appendChild(document.createElement("br"))
+        let company=u.company
+        out.innerHTML+=company
+        out.appendChild(k)
+
+        //add location
+        let loc=""
+        if (u.location) loc +=u.location
+        out.innerHTML+=loc
+        out.appendChild(k)
+
+        //add blog
+        let blog = u.blog
+        let a = document.createElement("a")
+        a.href=blog
+        a.target="NewTab"
+        a.innerText=blog
+        out.appendChild(a)
+        
+        //add repo count and repo names
+        let n = u.public_repos
+        out.innerHTML += BR+`${n} public repos`
+        if (n) {
+        let p = document.createElement("p")
+        let b = await toJSON(URL+u.login+"/repos")
+        p.innerText = b.map(x => x.name).join(", ")
+        out.appendChild(p)
+        }
+
+
+    }
+        title.innerText = document.title
+        out.innerText = "Reading data"
+        readUser()
+    </script>
+    
+    </body>
+    </html>
+    
