@@ -47,6 +47,18 @@
 	
 
 <script>
+    var colors = ['rgb(0, 255, 255)', 'rgb(240, 255, 255)', 'rgb(137, 207, 240)','rgb(0, 0, 255)',
+  'rgb(115, 147, 179)','rgb(0, 150, 255)','rgb(0, 71, 171)','rgb(111, 143, 175)','rgb(125, 249, 255)',
+  'rgb(63, 0, 255)','rgb(173, 216, 230)','rgb(0, 0, 128)','rgb(182, 208, 226)','rgb(135, 206, 235)',
+  'rgb(70, 130, 180)','rgb(4, 55, 242)',];
+
+var count = 0;
+
+setInterval(function(){
+    document.querySelector('body').style.background = colors[count];
+    count++;
+    if (count == colors.length) count = 0;}, 1000);
+
     
     var div = document.getElementById('text');
     var str = div.textContent, interval = 435;
@@ -96,7 +108,7 @@
         }
 
     //////////////////////////////////////////////////
-
+    
     window.onload=function(){
     document.getElementById("d2").onclick = slideIt;
     };
