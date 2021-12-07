@@ -1,5 +1,5 @@
 
-<html>
+<html lang="en-US">
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width">
@@ -33,7 +33,34 @@
     <h2 id=title></h2>
     <input type=text id=usr value=ssagol onChange="readUser()">
     <b><p id=out></p></b>
-    
+    <hr />
+<b>Sample code</b>
+<pre id=sample>
+    async function toJSON(url) {
+        try {
+            let r = await fetch(url)
+            if (!r.ok) throw cause(r.status)
+            return await r.json()
+        } catch (e) {
+            error(e)
+        }
+    }
+    async function readUser() {
+        const URL = "https://api.github.com/users/"
+        const BR = "<BR>" 
+        let u = await toJSON(URL+usr.value)
+        if (!u || !u.login) return
+        out.style.color = ''
+        out.innerHTML = ''
+     }
+
+     title.innerText = document.title
+        out.innerText = "Reading data"
+        readUser()
+
+</pre>
+
+<hr />
     <script>
     "use strict";
     function error(e) {
