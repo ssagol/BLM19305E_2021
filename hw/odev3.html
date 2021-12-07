@@ -28,6 +28,7 @@
 			transform: translateY(0px);
 			color: rgb(44, 42, 165);
 		}
+        #sample { overflow-x: auto; margin-top: 200px;}
 		
   </style>
 </head>
@@ -45,11 +46,65 @@
 
 	<input type="button" id="d2" value="Why mouse is running? Click here" style="color:rgb(203, 235, 166); background-color: rgb(44, 42, 165);">
 	
+    
+    
+
+<pre id="sample">
+    
+    <hr>
+    <b>Sample Code</b>
+    function colorTransition(){
+        for (let i=0; i<str.length; i++) {
+            div.innerHTML=str;
+            setTimeout(function(){
+            var letters = str.split('');
+            letters.splice(i,1,'<span style="color:rgb(44, 42, 165);">'+letters[i]+'</span>')
+            div.innerHTML=letters.join('');
+            },i*interval);
+        }
+        }
+    colorTransition();
+    setInterval(colorTransition, str.length*interval);
+
+    function onTick() {
+            
+        const spank = text.querySelectorAll('spank')[char];
+        spank.classList.add('fade');
+        char++;
+        
+        if(char === splitText.length){
+            complete();
+            return;
+        }
+    }
+
+    function complete() {
+        clearInterval(timer);
+        timer = null;
+    }
+
+    window.onload=function(){
+        document.getElementById("d2").onclick = slideIt;
+        };
+    
+            function slideIt()
+            {
+            var slidingDiv = document.getElementById("d1");
+            var stopPosition = 200; 
+            if (parseInt(slidingDiv.style.left) < stopPosition )
+            {
+                slidingDiv.style.left = parseInt(slidingDiv.style.left) + 2 + "px";
+                setTimeout(slideIt, 1);
+            }
+    
+        }
+    </pre>
+<hr>
 
 <script>
     var colors = ['rgb(0, 255, 255)', 'rgb(240, 255, 255)', 'rgb(137, 207, 240)','rgb(0, 0, 255)',
   'rgb(115, 147, 179)','rgb(0, 150, 255)','rgb(0, 71, 171)','rgb(111, 143, 175)','rgb(125, 249, 255)',
-  'rgb(63, 0, 255)','rgb(173, 216, 230)','rgb(0, 0, 128)','rgb(182, 208, 226)','rgb(135, 206, 235)',
+  'rgb(63,89, 167)','rgb(173, 216, 230)','rgb(0, 0, 128)','rgb(182, 208, 226)','rgb(135, 206, 235)',
   'rgb(70, 130, 180)','rgb(4, 55, 242)',];
 
 var count = 0;
@@ -75,7 +130,22 @@ setInterval(function(){
         }
     colorTransition();
     setInterval(colorTransition, str.length*interval);
+        function onTick() {
+            
+            const spank = text.querySelectorAll('spank')[char];
+            spank.classList.add('fade');
+            char++;
+            
+            if(char === splitText.length){
+                complete();
+                return;
+            }
+        }
 
+        function complete() {
+            clearInterval(timer);
+            timer = null;
+        }
     /////////////////////////////////////////////
 
     const text = document.querySelector(".intro");
