@@ -2,7 +2,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <link rel="icon" sizes="192x192" href="icon.jpg">
     <title>Animations</title>
 
   <style> 
@@ -51,9 +50,9 @@
     
 
 <pre id="sample">
-    
     <hr>
-    <b>Sample Code</b>
+<b>Sample Code</b>
+<br>
     function colorTransition(){
         for (let i=0; i<str.length; i++) {
             div.innerHTML=str;
@@ -64,32 +63,20 @@
             },i*interval);
         }
         }
-    colorTransition();
-    setInterval(colorTransition, str.length*interval);
 
-    function onTick() {
+        function onTick() {
             
-        const spank = text.querySelectorAll('spank')[char];
-        spank.classList.add('fade');
-        char++;
-        
-        if(char === splitText.length){
-            complete();
-            return;
+            const spank = text.querySelectorAll('spank')[char];
+            spank.classList.add('fade');
+            char++;
+            
+            if(char === splitText.length){
+                complete();
+                return;
+            }
         }
-    }
 
-    function complete() {
-        clearInterval(timer);
-        timer = null;
-    }
-
-    window.onload=function(){
-        document.getElementById("d2").onclick = slideIt;
-        };
-    
-            function slideIt()
-            {
+        function slideIt(){
             var slidingDiv = document.getElementById("d1");
             var stopPosition = 200; 
             if (parseInt(slidingDiv.style.left) < stopPosition )
@@ -99,23 +86,12 @@
             }
     
         }
+    
     </pre>
 <hr>
 
 <script>
-    var colors = ['rgb(0, 255, 255)', 'rgb(240, 255, 255)', 'rgb(137, 207, 240)','rgb(0, 0, 255)',
-  'rgb(115, 147, 179)','rgb(0, 150, 255)','rgb(0, 71, 171)','rgb(111, 143, 175)','rgb(125, 249, 255)',
-  'rgb(63,89, 167)','rgb(173, 216, 230)','rgb(0, 0, 128)','rgb(182, 208, 226)','rgb(135, 206, 235)',
-  'rgb(70, 130, 180)','rgb(4, 55, 242)',];
-
-var count = 0;
-
-setInterval(function(){
-    document.querySelector('body').style.background = colors[count];
-    count++;
-    if (count == colors.length) count = 0;}, 1000);
-
-    
+   
     var div = document.getElementById('text');
     var str = div.textContent, interval = 435;
 
@@ -184,8 +160,7 @@ setInterval(function(){
     document.getElementById("d2").onclick = slideIt;
     };
 
-        function slideIt()
-        {
+        function slideIt(){
         var slidingDiv = document.getElementById("d1");
         var stopPosition = 200; 
         if (parseInt(slidingDiv.style.left) < stopPosition )
